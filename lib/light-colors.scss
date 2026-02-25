@@ -1,0 +1,19 @@
+$variant: light;
+$trans: false;
+$header: $variant;
+
+
+#l {
+	theme: #c;
+	#theme colors & {
+		properties: #c;
+		#properties & {
+			color_scheme: system #c;
+			content_color_scheme: system #c;
+		}
+	}
+	#theme colors & {
+		colors: #c;
+		@import "_theme";
+	}
+}

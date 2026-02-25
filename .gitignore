@@ -1,0 +1,4 @@
+hist
+.env
+node_modules
+!lib

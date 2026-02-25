@@ -1,0 +1,76 @@
+@import "_colors";
+
+// $fg_color
+// $text_color
+// $bg_color
+// $base_color
+$insensitive_base_color: if($variant == 'light', darken($base_color, 20%), darken($base_color, 10%));;
+$unfocused_fg_color: $fg_color;
+$unfocused_text_color: $text_color;
+$unfocused_bg_color: $bg_color;
+$unfocused_base_color: $base_color;
+$unfocused_selected_bg_color: $selected_bg_color;
+$unfocused_selected_fg_color: $selected_fg_color;
+$unfocused_borders: $borders_color;
+
+$content_view_bg: $base_color;
+$text_view_bg: if($variant == 'light', $base_color, darken($base_color,6%));
+
+$button_hover_bg: rgba(if($variant == 'light', darken($button_bg, 10%), lighten($button_bg, 10%)), 1);
+$button_active_bg: rgba(mix($button_bg, $selected_bg_color, if($variant == 'light', 25%, 50%)), 0.75);
+$borders_color: mix($borders_color, if($variant == 'light', darken($button_bg, 50%), lighten($button_bg, 25%)));
+// $insensitive_bg_color
+// $insensitive_fg_color
+// $suggested_color
+// $button_bg
+// $warning_color
+// $error_color
+// $success_color
+// $link_color
+// $entry_bg
+// $link_color
+// $link_visited_color
+// $borders_color
+
+
+#color & {
+	bookmark_text: "#{$text_color}" #c;
+	button_background_active: "#{$button_active_bg}" #c;
+	button_background_hover: "#{$button_hover_bg}" #c;
+	frame: "#{$base_color}" #c;
+	frame_inactive: "#{$unfocused_bg_color}" #c;
+	icons: "#{$fg_color}" #c;
+	icons_attention: "#{$selected_bg_color}" #c;
+	ntp_background: "#{$bg_color}" #c;
+	ntp_card_background: "#{$button_bg}" #c;
+	ntp_text: "#{$fg_color}" #c;
+	popup: "#{$button_bg}" #c;
+	popup_border: "#{mix($borders_color, $selected_bg_color, 75%)}" #c;
+	popup_highlight: "#{$selected_bg_color}" #c;
+	popup_highlight_text: "#{$selected_fg_color}" #c;
+	popup_text: "#{$fg_color}" #c;
+	sidebar: "#{$bg_color}" #c;
+	sidebar_border: "#{$borders_color}" #c;
+	sidebar_highlight: "#{$button_active_bg}" #c;
+	sidebar_highlight_text: "#{$selected_fg_color}" #c;
+	sidebar_text: "#{$fg_color}" #c;
+	tab_background_separator: "#{$borders_color}" #c;
+	tab_background_text: "#{$text_color}" #c;
+	tab_line: "#{$selected_bg_color}" #c;
+	tab_loading: "#{$selected_bg_color}" #c;
+	tab_selected: "#{rgba(mix($bg_color, $selected_bg_color, 50%), 0.25)}" #c;
+	tab_text: "#{$fg_color}" #c;
+	toolbar: "#{$base_color}" #c;
+	toolbar_bottom_separator: "#{$borders_color}" #c;
+	toolbar_field: "#{$bg_color}" #c;
+	toolbar_field_border: "#{$button_hover_bg}" #c;
+	toolbar_field_border_focus: "#{$selected_bg_color}" #c;
+	toolbar_field_focus: "#{$base_color}" #c;
+	toolbar_field_highlight: "#{$selected_bg_color}" #c;
+	toolbar_field_highlight_text: "#{$selected_fg_color}" #c;
+	toolbar_field_text: "#{$fg_color}" #c;
+	toolbar_field_text_focus: "#{$fg_color}" #c;
+	toolbar_text: "#{$fg_color}" #c;
+	toolbar_top_separator: "#{$borders_color}" #c;
+	toolbar_vertical_separator: "#{$borders_color}" #c;
+}

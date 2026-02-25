@@ -1,0 +1,11 @@
+$variant: dark;
+$trans: false;
+$header: $variant;
+
+#d {
+	dark_theme: #c;
+	#dark_theme colors & {
+		colors: #c;
+		@import "_theme";
+	}
+}

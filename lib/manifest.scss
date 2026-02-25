@@ -1,0 +1,20 @@
+#c {
+	manifest_version: 2 #c;
+	version: $version #c;
+	name: $name #c;
+}
+
+@import 'light-colors';
+@import 'dark-colors';
+
+#bs {
+	browser_specific_settings: #c;
+	#bsc {
+		gecko: #c;
+		#gecko {
+			@if not ($geckoid == '') {
+				id: $geckoid #c;
+			}
+		}
+	}
+}
