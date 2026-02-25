@@ -1,0 +1,5 @@
+#!/bin/sh
+DIR="$(dirname "$(realpath "$0")")"
+
+echo "> Generating $(basename "$0")" >&2
+exec yq -L "$DIR" -r --from-file "$0.jq" "$@"
