@@ -1,16 +1,19 @@
 #!/bin/sh
 DIR="$(dirname "$(realpath "$0")")"
+(
+	cd "$1"
+	set -e
+	mkdir -p dist
 
-mkdir -p dist
+	sassc -I "$DIR" theme.scss |
+		"$DIR/jq/manifest" |
+		sed -ne 'w dist/manifest.json'
 
-sassc -I "$DIR" theme.scss |
-	"$DIR/jq/manifest" |
-	sed -ne 'w dist/manifest.json'
+	sassc -I "$DIR" theme.scss |
+		"$DIR/jq/preview" |
+		sed -ne 'w dist/preview.svg'
 
-sassc -I "$DIR" theme.scss |
-	"$DIR/jq/preview" |
-	sed -ne 'w dist/preview.svg'
-
-sassc -I "$DIR" theme.scss |
-	"$DIR/jq/icon" |
-	sed -ne 'w dist/icon.svg'
+	sassc -I "$DIR" theme.scss |
+		"$DIR/jq/icon" |
+		sed -ne 'w dist/icon.svg'
+) && npx web-ext build -s "$1/dist"

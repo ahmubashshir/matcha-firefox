@@ -8,14 +8,14 @@
 @import 'light-colors';
 @import 'dark-colors';
 
-#bs {
-	browser_specific_settings: #c;
-	#bsc {
-		gecko: #c;
-		#gecko {
-			@if not ($geckoid == '') {
-				id: $geckoid #c;
+@if variable-exists(geckoid) and $geckoid != '' {
+	#bs {
+		browser_specific_settings: #c;
+		#bsc {
+			gecko: #c;
+			#gecko {
+					id: $geckoid #c;
+				}
 			}
-		}
 	}
 }
