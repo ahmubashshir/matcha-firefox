@@ -1,0 +1,23 @@
+{
+  "name": "ff-themes",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "directories": {
+    "lib": "lib"
+  },
+  "webExt": {
+    "artifactsDir": "build",
+    "build": {
+      "overwriteDest": true
+    }
+  },
+  "scripts": {
+    "compile": "sh -x lib/transform.sh",
+    "build": "npm run compile && npx web-ext build"
+  },
+  "devDependencies": {
+    "web-ext": "^9.3.0"
+  }
+}
