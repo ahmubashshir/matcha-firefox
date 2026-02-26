@@ -4,7 +4,8 @@
 	| .theme.colors
 	| with_entries(.key as $key | .value |= "light-dark(\(.), \($dark[$key]))")
 )
-| .icons = {
+| if .icons != null
+then .icons = {
 	"32": .icons
-}
+} end
 | delpaths([["dark_theme"]])
