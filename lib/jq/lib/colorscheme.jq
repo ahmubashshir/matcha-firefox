@@ -29,7 +29,7 @@ def dualscheme:
 	| all
 ;
 
-def ___ds2ld:
+def _ds2ld:
 	.
 	| .theme.colors *= (
 		.dark_theme.colors as $dark
@@ -39,9 +39,17 @@ def ___ds2ld:
 	| delpaths([["dark_theme"]])
 ;
 
+def _onlydark:
+	if ((has("theme")|not) and has("dark_theme"))
+	then (.theme = .dark_theme)|delpaths([["dark_theme"]])
+	else .
+	end
+;
+
 def tolightdark:
-	if dualscheme
-	then ___ds2ld
+	_onlydark
+	| if dualscheme
+	then _ds2ld
 	else .
 	end
 ;
