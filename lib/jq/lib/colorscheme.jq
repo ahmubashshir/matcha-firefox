@@ -1,10 +1,33 @@
+def split_light_dark:
+  . as $s
+  | ($s | sub("^light-dark\\("; "") | sub("\\)$"; "")) as $inner
+  | reduce range(0; ($inner|length)) as $i
+      ({depth: 0, split: null};
+       if .split != null then .
+       else
+         ($inner[$i:$i+1]) as $ch
+         | if $ch == "(" then .depth += 1
+           elif $ch == ")" then .depth -= 1
+           elif $ch == "," and .depth == 0 then .split = $i
+           else .
+           end
+       end
+      )
+  | . as $state
+  | if $state.split == null then {light: $s, dark: $s}
+    else {
+      light: ($inner[0:$state.split] | gsub("^\\s+|\\s+$"; "")),
+      dark:  ($inner[$state.split+1:] | gsub("^\\s+|\\s+$"; ""))
+    }
+    end
+;
+
 def color(str):
 	str
-	| if startswith("light-dark")
-	then capture("light-dark\\((?<light>.*?), (?<dark>.*?)\\)")
+	| if startswith("light-dark(")
+	then split_light_dark
 	else {light: ., dark: .}
-	end
-;
+	end;
 
 def light(str): color(str).light;
 def dark(str):  color(str).dark;

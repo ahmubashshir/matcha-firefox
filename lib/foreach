@@ -1,0 +1,9 @@
+#!/bin/sh
+subcmd="$1"
+shift
+for dir in "$@"; do
+	case "$subcmd" in
+		web-ext) sh ./lib/web-ext build "$dir" ;;
+		build) sh ./lib/build "$dir" ;;
+	esac
+done

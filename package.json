@@ -14,8 +14,8 @@
     }
   },
   "scripts": {
-    "compile": "sh -x lib/transform.sh",
-    "build": "npm run compile && npx web-ext build"
+    "compile": "sh lib/foreach build variants/*",
+    "build": "npm run compile && sh lib/foreach web-ext variants/*"
   },
   "devDependencies": {
     "web-ext": "^9.3.0"
