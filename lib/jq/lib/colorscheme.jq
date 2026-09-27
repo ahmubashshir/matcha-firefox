@@ -57,7 +57,12 @@ def _ds2ld:
 	| .theme.colors *= (
 		.dark_theme.colors as $dark
 		| .theme.colors
-		| with_entries(.key as $key | .value |= "light-dark(\(.), \($dark[$key]))")
+		| with_entries(.key as $key | .value |= (
+			if ($dark | has($key)) and (. != $dark[$key])
+			then "light-dark(\(.), \($dark[$key]))"
+			else .
+			end
+		))
 	)
 	| delpaths([["dark_theme"]])
 ;
