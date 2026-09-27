@@ -6,14 +6,11 @@ DIR="$(dirname "$(realpath "$0")")"
 	mkdir -p dist
 
 	sassc -I "$DIR" theme.scss |
-		"$DIR/jq/manifest" |
-		sed -ne 'w dist/manifest.json'
+		"$DIR/jq/manifest" > dist/manifest.json
 
-	: || sassc -I "$DIR" theme.scss |
-		"$DIR/jq/preview" |
+	"$DIR/jq/preview" < "dist/manifest.json" |
 		sed -ne 'w dist/preview.svg'
 
-	: || sassc -I "$DIR" theme.scss |
-		"$DIR/jq/icon" |
+	"$DIR/jq/icon" < "dist/manifest.json" |
 		sed -ne 'w dist/icon.svg'
 ) && npx web-ext build -s "$1/dist"
